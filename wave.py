@@ -205,6 +205,13 @@ def main():
                             for sku, qty in order.items.items():
                                 writer.writerow([order.ship_id, sku, 'ECOM', qty])
 
+                    with open(os.path.join(base_dir, f'{level}_ready_sids.csv'), 'w', newline='') as f:
+                        writer = csv.writer(f)
+                        writer.writerow(['SHIP_ID'])
+                        for order in wave_set:
+                            writer.writerow([order.ship_id])
+
+
                 replen_orders = stats[1]
                 wave_set.extend(replen_orders)
                 if wave_set:
@@ -214,6 +221,12 @@ def main():
                         for order in wave_set:
                             for sku, qty in order.items.items():
                                 writer.writerow([order.ship_id, sku, 'ECOM', qty])
+
+                    with open(os.path.join(base_dir, f'{level}_ready_replen_sids.csv'), 'w', newline='') as f:
+                        writer = csv.writer(f)
+                        writer.writerow(['SHIP_ID'])
+                        for order in wave_set:
+                            writer.writerow([order.ship_id])
 
                 if replen_orders:
                     with open(os.path.join(base_dir, f'boh.csv'), 'w', newline='') as f:
@@ -239,6 +252,12 @@ def main():
                             for order in slot_wave_set:
                                 for sku, qty in order.items.items():
                                     writer.writerow([order.ship_id, sku, 'ECOM', qty])
+
+                        with open(os.path.join(slot_dir, f'{level}_slot_{slot_count}_sids.csv'), 'w', newline='') as f:
+                            writer = csv.writer(f)
+                            writer.writerow(['SHIP_ID'])
+                            for order in slot_wave_set:
+                                writer.writerow([order.ship_id])
 
                         with open(os.path.join(slot_dir, 'skus.csv'), 'w', newline='') as f:
                             writer = csv.writer(f)
