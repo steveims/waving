@@ -10,4 +10,3 @@ to also save generated data to files in the specified directory:
 python3 wave.py wave_set.csv boh.csv -r reports
 ```
 
-
